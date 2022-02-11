@@ -7,6 +7,7 @@ import { setMessage, removeMessage } from '../reducers/notificationReducer'
 const AnedecdoteList = () => {
 
   const anecdotes = useSelector(state=>state.anecdotes)
+  const filter = useSelector(state=>state.filter)
   const dispatch = useDispatch()
 
   const handleVote = (id,anecdoteText) => {
@@ -19,7 +20,8 @@ const AnedecdoteList = () => {
 
   return (
     <div>
-        {anecdotes.sort((a,b)=>b.votes-a.votes).map(anecdote =>
+        {filter}
+        {anecdotes.filter(a => a.content.indexOf(filter)!== -1).sort((a,b)=>b.votes-a.votes).map(anecdote =>
             <div key={anecdote.id}>
             <div>
                 {anecdote.content}
