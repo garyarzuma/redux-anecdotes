@@ -1,32 +1,19 @@
-//****************HELPER FUNCTIONS **************//
-
-//****************ACTION FUNCTIONS **************//
-
-export const setMessage = (message) => {
-  return {
-    type: 'NOTIFY',
-    message
-  }
-}
-
-
-export const removeMessage = () => {
-  return {
-    type: 'REMOVE_NOTIFY',
-  }
-}
+import { createSlice } from '@reduxjs/toolkit'
 
 //****************MAIN REDUCER **************//
 
-const reducer = (state = null, action) => {
-  switch(action.type) {
-    case 'NOTIFY':
-      return action.message
-    case 'REMOVE_NOTIFY':
+const notificationSlice = createSlice({
+  name:'notification',
+  initialState:null,
+  reducers: {
+    setMessage(state,action){
+      return action.payload
+    },
+    removeMessage(state,action){
       return null
-    default: 
-      return state
+    }
   }
-}
+})
 
-export default reducer
+export const { setMessage, removeMessage} = notificationSlice.actions
+export default notificationSlice.reducer

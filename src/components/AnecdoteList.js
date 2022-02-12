@@ -20,7 +20,6 @@ const AnedecdoteList = () => {
 
   return (
     <div>
-        {filter}
         {anecdotes.filter(a => a.content.indexOf(filter)!== -1).sort((a,b)=>b.votes-a.votes).map(anecdote =>
             <div key={anecdote.id}>
             <div>
