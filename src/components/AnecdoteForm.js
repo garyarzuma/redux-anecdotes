@@ -2,8 +2,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import {addAnecdotes} from '../reducers/anecdoteReducer'
-import { setMessage, removeMessage } from '../reducers/notificationReducer'
-import anecdoteService from '../services/anecdotes'
+import { setNotification } from '../reducers/notificationReducer'
 
 const AnedecdoteForm = () => {
     const dispatch = useDispatch()
@@ -13,13 +12,10 @@ const AnedecdoteForm = () => {
         const anecdoteText = event.target.anecdote.value
         dispatch(addAnecdotes(anecdoteText))
         event.target.anecdote.value = ''
-        
+    
         const message = `You added anecdote "${anecdoteText}".`
-        dispatch(setMessage(message))
-        setTimeout( () => dispatch(removeMessage()), 5000)
+        dispatch(setNotification(message,5))
     }
-
-
 
   return (
     <div >
